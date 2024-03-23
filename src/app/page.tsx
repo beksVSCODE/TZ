@@ -63,7 +63,7 @@ const WalletPage = () => {
 
   const [transactionAddress, setTransactionAddress] = useState('');
   const [selectedCurrency, setSelectedCurrency] = useState<'ETH' | 'BNB'>('ETH');
-  const isScreenSmall = useMediaQuery('(max-width:460px)');
+  const isScreenSmall = useMediaQuery('(max-width:660px)');
 
   const handleTransactionSubmit = () => {
     if (transactionAddress.trim() === '' || !transactionAddress.includes('@')) {
@@ -71,7 +71,6 @@ const WalletPage = () => {
       toast.error('Invalid recipient address');
       return;
     }
-    // Логика отправки транзакции
     console.log('Transaction submitted to:', transactionAddress);
     toast.success('Transaction submitted successfully');
   };
@@ -82,9 +81,9 @@ const WalletPage = () => {
 
 
   return (
-    <Container maxWidth="sm" sx={{display:'flex', justifyContent:'center'}}>
+    <Container maxWidth="xl" sx={{display:'flex', justifyContent:'center'}}>
       <ToastContainer />
-      <Box width='600px' borderRadius={8} bgcolor='white' padding='25px 20px'> 
+      <Box width="100%" maxWidth="600px" borderRadius={8} bgcolor='white' padding='25px 15px'> 
           <Stack spacing={2}>
               <Typography variant="h5" align="center" gutterBottom>
                   Wallet Information
@@ -95,22 +94,22 @@ const WalletPage = () => {
                             <CurrencyButton currency="BNB" selectedCurrency={selectedCurrency} onClick={handleCurrencyChange} />
                             <CurrencyButton currency="ETH" selectedCurrency={selectedCurrency} onClick={handleCurrencyChange} />
                       </Stack>
-                      <Typography variant="body1"  sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                      Address: {walletInfo.address}
+                      <Typography variant="body1"  sx={{ fontWeight: 'bold', color: 'primary.main', fontSize:'12px'}}>
+                        Address: {walletInfo.address}
                       </Typography>
                 </Stack>
               ) : (
                 <Stack direction='row' spacing={1.2} alignItems='center'>
                             <CurrencyButton currency="BNB" selectedCurrency={selectedCurrency} onClick={handleCurrencyChange} />
                             <CurrencyButton currency="ETH" selectedCurrency={selectedCurrency} onClick={handleCurrencyChange} />
-                  <Typography variant="body1"  sx={{ fontWeight: 'bold', color: 'primary.main'}}>
-                    Address: {walletInfo.address}
+                  <Typography variant="body1"  sx={{ fontWeight: 'bold', color: 'primary.main', fontSize:'12px'}}>
+                        Address: {walletInfo.address}
                   </Typography>
                 </Stack>
               )}
               <Stack spacing={1}>
                   <Typography variant="body3" fontSize='20px'>
-                      Balance: {selectedCurrency === 'BNB' ? walletInfo.balanceBNB : walletInfo.balanceETH}
+                      Balance {selectedCurrency === 'BNB' ? 'BNB' : 'ETH'}: {selectedCurrency === 'BNB' ? walletInfo.balanceBNB : walletInfo.balanceETH}
                   </Typography>
               </Stack>
               <TextField
