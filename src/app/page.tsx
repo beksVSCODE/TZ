@@ -70,8 +70,10 @@ const WalletPage = () => {
     toast.success('Transaction submitted successfully');
   };
 
-  const handleCurrencyChange = (currency: 'ETH' | 'BNB') => {
-    setSelectedCurrency(currency);
+  const handleCurrencyChange = (currency: string) => {
+    if (currency === 'ETH' || currency === 'BNB') {
+      setSelectedCurrency(currency as 'ETH' | 'BNB');
+    }
   };
 
   return (
@@ -85,8 +87,8 @@ const WalletPage = () => {
               {isScreenSmall ? (
                 <Stack direction='column' spacing={1.2} alignItems='center'>
                       <Stack direction='row' justifyContent='start'>
-                            <CurrencyButton currency="BNB" selectedCurrency={selectedCurrency} onClick={handleCurrencyChange} />
-                            <CurrencyButton currency="ETH" selectedCurrency={selectedCurrency} onClick={handleCurrencyChange} />
+                            <CurrencyButton currency="BNB" selectedCurrency={selectedCurrency} onClick={() => handleCurrencyChange('BNB')} />
+                            <CurrencyButton currency="ETH" selectedCurrency={selectedCurrency} onClick={() => handleCurrencyChange('ETH')} />
                       </Stack>
                       <Typography variant="body1"  sx={{ fontWeight: 'bold', color: 'primary.main', fontSize:'12px'}}>
                         Address: {walletInfo.address}
@@ -94,8 +96,8 @@ const WalletPage = () => {
                 </Stack>
               ) : (
                 <Stack direction='row' spacing={1.2} alignItems='center'>
-                            <CurrencyButton currency="BNB" selectedCurrency={selectedCurrency} onClick={handleCurrencyChange} />
-                            <CurrencyButton currency="ETH" selectedCurrency={selectedCurrency} onClick={handleCurrencyChange} />
+                            <CurrencyButton currency="BNB" selectedCurrency={selectedCurrency} onClick={() => handleCurrencyChange('BNB')} />
+                            <CurrencyButton currency="ETH" selectedCurrency={selectedCurrency} onClick={() => handleCurrencyChange('ETH')} />
                   <Typography variant="body1"  sx={{ fontWeight: 'bold', color: 'primary.main', fontSize:'12px'}}>
                         Address: {walletInfo.address}
                   </Typography>
