@@ -21,7 +21,7 @@ const WalletPage = () => {
 
   useEffect(() => {
     const connectToMetamask = async () => {
-      if (window.ethereum) {
+      if (window?.ethereum) {
         try {
           await window.ethereum.request({ method: 'eth_requestAccounts' });
           const web3 = new Web3(window.ethereum);
