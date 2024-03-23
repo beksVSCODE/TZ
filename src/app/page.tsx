@@ -27,12 +27,10 @@ const WalletPage = () => {
           const web3 = new Web3(window.ethereum);
           return web3;
         } catch (error) {
-          console.error('Ошибка подключения к Metamask:', error);
           toast.error('Ошибка подключения к Metamask');
           return null;
         }
       } else {
-        console.error('Metamask не найден');
         toast.error('Metamask не найден');
         return null;
       }
@@ -52,7 +50,6 @@ const WalletPage = () => {
             balanceBNB:  web3.utils.fromWei(balanceBNB, 'ether')
           });
         } catch (error) {
-          console.error('Ошибка при получении информации о кошельке:', error);
           toast.error('Ошибка при получении информации о кошельке');
         }
       }
@@ -67,11 +64,9 @@ const WalletPage = () => {
 
   const handleTransactionSubmit = () => {
     if (transactionAddress.trim() === '' || !transactionAddress.includes('@')) {
-      console.error('Invalid recipient address');
       toast.error('Invalid recipient address');
       return;
     }
-    console.log('Transaction submitted to:', transactionAddress);
     toast.success('Transaction submitted successfully');
   };
 
