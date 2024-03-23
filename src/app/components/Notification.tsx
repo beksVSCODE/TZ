@@ -1,10 +1,14 @@
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Notification = () => {
-  const notifySuccess = (message) => toast.success(message);
-  const notifyError = (message) => toast.error(message);
+interface NotificationProps {
+  message: string;
+}
+
+const Notification: React.FC<NotificationProps> = ({ message }) => {
+  const notifySuccess = (message: string) => toast.success(message);
+  const notifyError = (message: string) => toast.error(message);
 
   return (
     <ToastContainer
