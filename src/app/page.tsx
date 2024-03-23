@@ -65,7 +65,7 @@ const WalletPage = () => {
   const isScreenSmall = useMediaQuery('(max-width:660px)');
 
   const handleTransactionSubmit = () => {
-    if (transactionAddress.trim() === '' || !transactionAddress.includes('@')) {
+    if (transactionAddress.trim() === '') {
       toast.error('Invalid recipient address');
       return;
     }
