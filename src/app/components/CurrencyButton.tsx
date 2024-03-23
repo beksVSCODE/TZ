@@ -1,10 +1,14 @@
-'use client'
-import React, { useState } from 'react';
-import { Stack, Typography, TextField, Button, Box, Container } from '@mui/material';
+import React from 'react';
+import { Stack, Typography, Box } from '@mui/material';
 import Image from 'next/image';
 
+interface CurrencyButtonProps {
+  currency: string;
+  selectedCurrency: string;
+  onClick: (currency: string) => void;
+}
 
-const CurrencyButton = ({ currency, selectedCurrency, onClick }) => (
+const CurrencyButton: React.FC<CurrencyButtonProps> = ({ currency, selectedCurrency, onClick }) => (
   <Box
     borderRadius='10px'
     display='flex'
@@ -16,13 +20,15 @@ const CurrencyButton = ({ currency, selectedCurrency, onClick }) => (
       backgroundColor: selectedCurrency === currency ? '#060e34' : 'transparent',
       color: selectedCurrency === currency ? 'white' : 'inherit',
       borderRadius: '10px',
+      cursor: 'pointer',
     }}
     onClick={() => onClick(currency)}
   >
     <Stack direction='row' alignItems='center' spacing={0.6}>
-      <Image src={`/${currency}.png`} width={30} height={30} />
-      <p>{currency}</p>
+      <Image src={`/${currency}.png`} alt={currency} width={30} height={30} />
+      <Typography variant="body1">{currency}</Typography>
     </Stack>
   </Box>
 );
-export default CurrencyButton
+
+export default CurrencyButton;
