@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react';
-import { Typography, TextField, Button, Box, Container, useMediaQuery,Stack } from '@mui/material';
+import { Typography, TextField, Button, Box, Container, useMediaQuery, Stack } from '@mui/material';
 import Web3 from 'web3';
 import { toast, ToastContainer } from 'react-toastify';
 import CurrencyButton from '@/app/components/CurrencyButton';
@@ -18,6 +18,8 @@ const WalletPage = () => {
     balanceETH: 0,
     balanceBNB: 0,
   });
+
+  const [connectionAttempt, setConnectionAttempt] = useState<number>(0);
 
   useEffect(() => {
     const connectToMetamask = async () => {
@@ -56,7 +58,7 @@ const WalletPage = () => {
     };
 
     fetchWalletInfo();
-  }, []);
+  }, [connectionAttempt]); 
 
   const [transactionAddress, setTransactionAddress] = useState('');
   const [selectedCurrency, setSelectedCurrency] = useState<'ETH' | 'BNB'>('ETH');
@@ -74,6 +76,10 @@ const WalletPage = () => {
     if (currency === 'ETH' || currency === 'BNB') {
       setSelectedCurrency(currency as 'ETH' | 'BNB');
     }
+  };
+
+  const handleRetryConnection = () => {
+    setConnectionAttempt(prev => prev + 1);
   };
 
   return (
@@ -124,6 +130,9 @@ const WalletPage = () => {
               <Typography variant="body2" fontSize='12px' color='gray'>
                       1,00 {selectedCurrency} = {selectedCurrency === 'ETH' ? '3434,00 USD' : '552,83 USD'}
               </Typography>
+              <Button variant="outlined" onClick={handleRetryConnection}>
+                Retry Connection
+              </Button>
           </Stack>
       </Box>
   </Container>
