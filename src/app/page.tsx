@@ -46,8 +46,8 @@ const WalletPage = () => {
           const balanceBNB = await web3.eth.getBalance(address);
           setWalletInfo({
             address,
-            balanceETH: web3.utils.fromWei(balanceETH, 'ether'),
-            balanceBNB:  web3.utils.fromWei(balanceBNB, 'ether')
+            balanceETH: parseFloat(web3.utils.fromWei(balanceETH, 'ether')), 
+            balanceBNB: parseFloat(web3.utils.fromWei(balanceBNB, 'ether')) 
           });
         } catch (error) {
           toast.error('Ошибка при получении информации о кошельке');
@@ -104,7 +104,7 @@ const WalletPage = () => {
               )}
               <Stack spacing={1}>
                   <Typography variant="body3" fontSize='20px'>
-                      Balance {selectedCurrency === 'BNB' ? 'BNB' : 'ETH'}: {selectedCurrency === 'BNB' ? walletInfo.balanceBNB : walletInfo.balanceETH}
+                    Balance {selectedCurrency === 'BNB' ? 'BNB' : 'ETH'}: {selectedCurrency === 'BNB' ? walletInfo.balanceBNB : walletInfo.balanceETH}
                   </Typography>
               </Stack>
               <TextField
