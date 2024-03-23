@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react';
-import { Stack, Typography, TextField, Button, Box, Container, useMediaQuery } from '@mui/material';
+import { Typography, TextField, Button, Box, Container, useMediaQuery,Stack } from '@mui/material';
 import Web3 from 'web3';
 import { toast, ToastContainer } from 'react-toastify';
 import CurrencyButton from '@/app/components/CurrencyButton';
@@ -74,7 +74,6 @@ const WalletPage = () => {
     setSelectedCurrency(currency);
   };
 
-
   return (
     <Container maxWidth="xl" sx={{display:'flex', justifyContent:'center'}}>
       <ToastContainer />
@@ -103,7 +102,7 @@ const WalletPage = () => {
                 </Stack>
               )}
               <Stack spacing={1}>
-                  <Typography variant="body3" fontSize='20px'>
+                  <Typography variant="body2" fontSize='20px'>
                     Balance {selectedCurrency === 'BNB' ? 'BNB' : 'ETH'}: {selectedCurrency === 'BNB' ? walletInfo.balanceBNB : walletInfo.balanceETH}
                   </Typography>
               </Stack>
@@ -120,7 +119,7 @@ const WalletPage = () => {
                   Send
               </Button>
               </Box>
-              <Typography variant="body3" fontSize='12px' color='gray'>
+              <Typography variant="body2" fontSize='12px' color='gray'>
                       1,00 {selectedCurrency} = {selectedCurrency === 'ETH' ? '3434,00 USD' : '552,83 USD'}
               </Typography>
           </Stack>
